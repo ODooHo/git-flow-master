@@ -218,3 +218,9 @@ gradlew
 gradle/wrapper/gradle-wrapper.jar
 
 gradle/wrapper/gradle-wrapper.properties
+
+.idea/compiler.xml
+
+.idea/jarRepositories.xml
+
+.idea/kotlinc.xml
