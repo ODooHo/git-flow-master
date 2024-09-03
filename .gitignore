@@ -224,3 +224,5 @@ gradle/wrapper/gradle-wrapper.properties
 .idea/jarRepositories.xml
 
 .idea/kotlinc.xml
+
+.idea/dataSources.xml
