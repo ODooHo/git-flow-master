@@ -3,7 +3,9 @@ package com.motemote_gitflow.config
 import com.motemote_gitflow.service.AccountService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer
@@ -15,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 
 
+@Configuration
 @EnableWebSecurity
 class SecurityConfig(
     @Autowired private val accountService: AccountService,
@@ -35,31 +38,19 @@ class SecurityConfig(
         http
             .authorizeHttpRequests { requests ->
                 requests
-                    .anyRequest().authenticated()
+                    .anyRequest().permitAll()
             }
-            .formLogin { form ->
-                form
-                    .successHandler { request, response, authentication ->
-                        response.sendRedirect(request.getParameter("continue") ?: LOGIN_SUCCESS_URL)
-                    }
-                    .failureUrl("/login?error=true")
+            .cors { cors ->
+                cors.disable()
             }
-            .logout { logout ->
-                logout.logoutSuccessUrl("/login?logout=true")
+            .csrf { csrf ->
+                csrf.disable()
             }
-            .sessionManagement { session ->
-                session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+            .httpBasic { httpBasic ->
+                httpBasic.disable()
             }
         return http.build()
     }
 
-    @Bean
-    fun userDetailsService(): UserDetailsService {
-        return accountService
-    }
 
-    @Bean
-    fun passwordEncoder(): PasswordEncoder {
-        return passwordEncoder
-    }
 }

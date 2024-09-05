@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" href="style.css"> <!-- 스타일 시트 추가 가능 -->
+</head>
+<body>
+<div class="container">
+    <h1>로그인</h1>
+    <form th:action="@{/api/signUp}" method="post" th:object="${signUpDto}">
+        <div>
+            <label for="email">이메일:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">가입하기</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

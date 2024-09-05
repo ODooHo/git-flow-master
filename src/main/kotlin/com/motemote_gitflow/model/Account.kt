@@ -1,5 +1,6 @@
 package com.motemote_gitflow.model
 
+import com.motemote_gitflow.dto.AccountDto
 import jakarta.persistence.ElementCollection
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
@@ -15,7 +16,7 @@ import java.time.LocalDateTime
 import java.util.stream.Collectors
 
 @Entity
-data class Account (
+data  class Account (
     @Id @GeneratedValue
     var id: Long? = null,
     var email: String? = null,
@@ -36,5 +37,12 @@ data class Account (
                 }.collect(Collectors.toSet())
             )
         }
+
+    fun toDto(): AccountDto {
+        return AccountDto(
+            email = this.email,
+            password = this.password
+        )
+    }
 
 }

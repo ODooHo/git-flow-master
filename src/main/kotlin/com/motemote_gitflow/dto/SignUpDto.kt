@@ -1,0 +1,17 @@
+package com.motemote_gitflow.dto
+
+import com.motemote_gitflow.model.Account
+import com.motemote_gitflow.model.AccountRole
+import java.time.LocalDateTime
+
+data class SignUpDto (
+    val email: String? = null,
+    val password: String? = null
+)
+
+fun SignUpDto.toDomain() = Account(
+    email = this.email.orEmpty(),
+    password = this.password.orEmpty(),
+    roles = mutableSetOf(AccountRole.USER),
+    createdAt = LocalDateTime.now()
+)
