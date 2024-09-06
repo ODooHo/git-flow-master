@@ -20,8 +20,6 @@ import org.springframework.security.web.SecurityFilterChain
 @Configuration
 @EnableWebSecurity
 class SecurityConfig(
-    @Autowired private val accountService: AccountService,
-    @Autowired private val passwordEncoder: PasswordEncoder
 ) {
 
     companion object {
