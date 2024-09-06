@@ -1,5 +1,6 @@
 package com.motemote_gitflow.config
 
+import com.motemote_gitflow.dto.SignUpDto
 import com.motemote_gitflow.model.Account
 import com.motemote_gitflow.model.AccountRole
 import com.motemote_gitflow.service.AccountService
@@ -31,6 +32,7 @@ class BeanConfig {
                     "engh0205@naver.com",
                     "1234",
                     mutableSetOf(AccountRole.ADMIN, AccountRole.USER))
+
                 accountService.saveAccount(admin)
             }
         }

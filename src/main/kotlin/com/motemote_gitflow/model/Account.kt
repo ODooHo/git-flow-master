@@ -1,15 +1,8 @@
 package com.motemote_gitflow.model
 
 import com.motemote_gitflow.dto.AccountDto
-import jakarta.persistence.ElementCollection
-import jakarta.persistence.Entity
-import jakarta.persistence.EnumType
-import jakarta.persistence.Enumerated
-import jakarta.persistence.FetchType
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
+import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
-import org.hibernate.proxy.HibernateProxy
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
 import java.time.LocalDateTime
@@ -24,7 +17,7 @@ data  class Account (
 
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
-    var roles: MutableSet<AccountRole>,
+    var roles: MutableSet<AccountRole> = mutableSetOf(AccountRole.USER),
 
     @CreationTimestamp
     var createdAt: LocalDateTime = LocalDateTime.now()
