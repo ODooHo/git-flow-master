@@ -21,14 +21,14 @@ jooq {
                 logging = org.jooq.meta.jaxb.Logging.WARN
                 jdbc.apply {
                     driver = "com.mysql.cj.jdbc.Driver"
-                    url = System.getenv("DB_URL") ?: "jdbc:mysql://localhost:3306/motemote"
+                    url = System.getenv("DB_URL") ?: "jdbc:postgresql://localhost:5432/motemote"
                     user = System.getenv("DB_USER") ?: "dooho"
                     password = System.getenv("DB_PASSWORD") ?: "1234"
                 }
                 generator.apply {
                     name = "org.jooq.codegen.KotlinGenerator"
                     database.apply {
-                        name = "org.jooq.meta.mysql.MySQLDatabase"
+                        name = "org.jooq.meta.postgres.PostgresDatabase"
                         excludes = "sys"
                         inputSchema = "motemote"
                     }
@@ -79,9 +79,9 @@ dependencies {
 //    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
     compileOnly("org.projectlombok:lombok")
-    runtimeOnly("com.mysql:mysql-connector-j")
+    runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
-    jooqGenerator("com.mysql:mysql-connector-j")
+    jooqGenerator("org.postgresql:postgresql")  // JOOQ에 PostgreSQL 드라이버 추가
     jooqGenerator("org.jooq:jooq-meta:3.18.10")
     jooqGenerator("org.jooq:jooq-codegen:3.18.10")
 
