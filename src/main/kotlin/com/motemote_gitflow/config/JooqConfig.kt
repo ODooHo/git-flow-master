@@ -11,6 +11,6 @@ import javax.sql.DataSource
 class JooqConfig(private val dataSource : DataSource){
     @Bean
     fun dsl(): DSLContext{
-        return DSL.using(dataSource, SQLDialect.MYSQL)
+        return DSL.using(dataSource, SQLDialect.POSTGRES)
     }
 }
